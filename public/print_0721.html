@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&lrm;</title>
+  <style>
+    #header{
+      width         :100%;
+      height        :50px;
+      text-align    :center;
+      font-size     :40px;
+      margin-bottom :50px;
+    }
+
+    .orderNum{
+      position    :absolute;
+      font-size   :14px;
+      line-height :50px;
+      margin-left :30px;
+      padding-top :40px;
+    }
+
+    .docDate{
+      position    :absolute;
+      font-size   :14px;
+      line-height :50px;
+      margin-left :30px;
+      padding-top :60px;
+    }
+
+    #rule1{
+      width       :100%;
+      padding-top :10px;
+    }
+
+    dt, dd{
+      padding-bottom :10px;
+    }
+
+    td, th{
+      padding :4px 0;
+    }
+
+    purchaseOrder1{
+      width  :100%;
+      height :100%;
+    }
+
+    #purchaseOrder2{
+      position   :relative;
+      z-index    :99999;
+      margin-top :-200px;
+      width      :100%;
+      height     :205px;
+    }
+
+    #purchaseOrder2 ul{
+      list-style   :none;
+      padding-left :0px;
+      display      :inline-block;
+      width        :50%;
+    }
+
+    #purchaseOrder2 ul:nth-child(2){
+      float :right;
+    }
+
+    #purchaseOrder2 ul li{
+      padding-bottom :5px;
+      width          :100%;
+    }
+
+    #top table{
+      width :100%;
+    }
+
+    .materialtable td{
+      text-align :center;
+    }
+
+    #table .itemCode{
+      text-align :left
+    }
+
+    .positionr{
+      text-align :right !important;
+    }
+
+    #top tr > td:nth-child(odd){
+      width :100px;
+    }
+
+  </style>
+  <style media=print>
+    .Noprint{
+      display :none;
+    }
+  </style>
+</head>
+<body>
+<div id="contract">
+  <div id="purchaseOrder1">
+    <div id='header'>
+      <span>铸件采购合同</span>
+      <span class="orderNum">订单编号：<span id="orderCode"></span></span>
+      <span class="docDate">下单日期：<span id="docDate"></span></span>
+    </div>
+  </div>
+
+    <div id="rule1" style="clear: both">
+      <dl>
+        <dt>甲方（需方）：苏州安特威工业智能科技股份有限公司（以下简称甲方）</dt>
+        <dt>乙方（供方）：<span class="supName"></span>（以下简称乙方）</dt>
+        <dt>  甲乙双方依照《中华人民共和国合同法》及其他有关法律、行政法规、遵循平等、自愿、公平和诚实信用的原则就铸件采购事宜协商一致，订立本合同。</dt>
+        <dt>一、 本合同适用于开模后铸件试样的购买。</dt>
+        <dt>二、 产品名称、规格、材质、数量、单价、金额：</dt>
+        <dt>
+          <table border="2" class="materialtable" style="width: 99%;border-collapse: collapse" id="datas">
+            　
+            <thead>
+            <tr class="orderdetailtab">
+              <th class="text-center">料号</th>
+              <th class="text-center">规格型号</th>
+              <th class="text-center" style="width:10%">数量</th>
+              <th class="text-center" style="width:8%">单位</th>
+              <th class="text-center" style="width:10%">单价</th>
+              <th class="text-center" style="width:10%">备注</th>
+            </tr>
+            　
+            </thead>
+            <tbody>
+            <tr id="table" class="classtab">
+              <td class="itemCode"></td>
+              <td class="itemName"></td>
+              <td class="tcNum"></td>
+              <td class="tcUom"></td>
+              <td class="price positionr"></td>
+              <td class="updatePriceRemark positionr"></td>
+            </tr>
+            <tr class="classtaball">
+<!--              <td colspan="2">合计</td>-->
+<!--              <td colspan="2">大写：<span class="addchinese"></span></td>-->
+<!--              <td colspan="2" class="add positionr"></td>-->
+              <td colspan="6">以上单价含税13%及含运费，金额按实际重量结算。</td>
+            </tr>
+            </tbody>
+          </table>
+        </dt>
+        <dt id="addClause"></dt>
+        <dt>三、 技术及质量要求：</dt>
+        <dd>3.1 此订单产品应符合甲方《ATW-TS-01 铸件采购规范》的要求；如果此订单产品为新开模后首次浇注，则需要按ASME B16.34要求对首件产品进行射线检测做工艺评定，不接受检测结果含有裂纹或五级缺陷的产品；</dd>
+        <dd>3.2 此订单产品外观检验标准参照《MSS-SP-55》执行；</dd>
+        <dt>四、 交货条件：</dt>
+        <dd>乙方应该在    年  月  日前送到甲方指定地点（苏州安特威工业智能科技股份有限公司，苏州市吴江汾湖开发区越秀路988号，收货员：15962590769）。</dd>
+        <dt>五、 产品验收：</dt>
+        <dd>产品到达甲方仓库后，甲方按向乙方提供的技术图纸验收；实际使用过程中如果出现质量问题，按甲方的《供应商质量保证协议》执行。</dd>
+        <dt>六、 结算方式：</dt>
+        <dd>6.1 产品重量应按交货状态计算（去除冒口后），以电子秤或者磅秤称得产品重量，当甲、乙双方称得重量存在差异时，按双方重量加和除以2的平均重量结算。</dd>
+        <dd>6.2 产品经甲方验收合格，转为安特威SRM系统订单入库后，甲方通知乙方开具全额增值税专用发票，付款按甲、乙双方约定的付款期限和方式，如果未约定付款方式则按票到后90天付承兑汇票。</dd>
+        <dd>6.3 在本合同转为安特威SRM系统订单后，本合同自动失效。</dd>
+        <dt>七、 其他事项：</dt>
+        <dd>7.1 乙方无条件遵守甲方的基本合同（《新供应商合作条款》《保密承诺书》《安特威合作补充协议》《供应商质量保证协议》《供应商廉洁承诺》）。</dd>
+        <dd>7.2 未尽事宜，双方协商解决。</dd>
+        <dt>八、 本合同一式两份，双方各执一份；甲、乙双方签字盖章后生效，传真件、扫描件有效。</dt>
+        <dt>九、 保密协议：</dt>
+        <dd>乙方不得将甲方的图纸以及模具翻砂蜡型等泄露或销售给第三方，一经发现甲方将向乙方索赔50万元人民币，其他参照甲方的《保密承诺书》执行。</dd>
+      </dl>
+    </div>
+  </div>
+  <div id="pic"><img src="img/Specialseal_old_20220630.jpg" style="width: 200px;height: 200px;"></div>
+  <div id="purchaseOrder2">
+    <ul>
+      <li>需 方：苏州安特威工业智能科技股份有限公司</li>
+      <li>法定代表人或负责人：</li>
+      <li>日期：</li>
+    </ul>
+
+    <ul>
+      <li>卖 方：<span class="supName"></span></li>
+      <li>法定代表人或负责人：</li>
+      <li>日期：</li>
+    </ul>
+  </div>
+<button style="width: 120px;height: 30px;" onclick="print()" id="printCon" style="display: block" class="Noprint">确认打印
+</button>
+</body>
+<script src="./jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="./util/func.js"></script>
+<script>
+    $(() => {
+        let id = getUrlParam('id');
+        $.ajax({
+            type    :'GET',
+            url     :'/api/blade-po/po/detailwithpi?id=' + id,
+            dataType:'json',
+            success :function(result){
+                console.log(result)
+                $("#orderCode").html(result.data.orderCode)
+                $("#docDate").html(Time( result.data.docDate))
+                $(".supName").html(result.data.supName)
+                //$(".date").html(result.data.createTime.substr(0, 10))
+                //$(".taxRate").html(((Math.round(result.data.taxRate * 10000)) / 100.00).toFixed(0) + '%');
+                var data      = result.data.poItemList
+                var acountAll = 0
+                for(var i = 0; i < data.length; i++){
+                    var row = $("#table").clone();
+                    row.find(".itemCode").text(data[i].itemCode);
+                    row.find(".itemName").text(data[i].itemName);
+                    // row.find(".project").text(data[i].proNo);//项目
+                    row.find(".tcNum").text(data[i].tcNum);
+                    row.find(".tcUom").text(data[i].tcUom);
+                    row.find(".price").text(formatMoney(data[i].amount));
+                    row.find(".updatePriceRemark").text(data[i].updatePriceRemark < 0 ? '' : data[i].updatePriceRemark);
+                    row.appendTo("#datas");//添加到模板的容器中
+                }
+                acountAll     = formatMoney(result.data.docAmount)
+                var acountrow = $(".classtaball").clone();
+                $(".classtaball:eq(0)").hide()
+                var chinese = number_chinese(result.data.docAmount)
+                acountrow.find(".addchinese").text(chinese)
+                acountrow.find(".add").text(acountAll)
+                acountrow.appendTo("#datas");
+                $(".classtab:eq(0)").hide()
+
+            },
+        });
+    })
+
+
+</script>
+</html>

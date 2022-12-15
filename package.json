@@ -1,0 +1,55 @@
+{
+  "name": "atvsrm-admin",
+  "version": "2.2.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build --mode test",
+    "build:dev": "vue-cli-service build --mode dev",
+    "lint": "vue-cli-service lint",
+    "analyz": "npm_config_report=true npm run build",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e"
+  },
+  "dependencies": {
+    "avue-plugin-ueditor": "^0.0.6",
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "classlist-polyfill": "^1.2.0",
+    "echarts": "^4.9.0",
+    "element-ui": "^2.14.1",
+    "js-base64": "^2.6.4",
+    "js-cookie": "^2.2.0",
+    "mockjs": "^1.1.0",
+    "nprogress": "^0.2.0",
+    "portfinder": "^1.0.28",
+    "v-charts": "^1.19.0",
+    "vue": "^2.6.12",
+    "vue-axios": "^2.1.5",
+    "vue-i18n": "^8.22.2",
+    "vue-router": "^3.4.9",
+    "vue-video-player": "^5.0.2",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-eslint": "^3.12.1",
+    "@vue/cli-service": "^3.12.1",
+    "chai": "^4.1.2",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.6.12",
+    "webpack-bundle-analyzer": "^3.9.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

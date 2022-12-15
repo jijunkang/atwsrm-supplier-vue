@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打印送货单</title>
+    <script src="./jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <style>
+        #head {
+            display: flex;
+            align-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .flex-item{
+            font-weight: bolder;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+        }
+        .text{
+            font-size: 20px;
+            margin-left: 25px;
+        }
+    </style>
+    <style media=print>
+        .Noprint {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="deliveryNote">
+    <div style="position: absolute;"><img src="img/atw.png" style="width: 72px;height: 20px"></div>
+    <div id="head">
+        <div class="flex-item"style="font-size: 40px;margin-top: 15px">苏 州 安 特 威 阀 门 有 限 公 司</div>
+        <div class="flex-item"style="font-size: 26px">Suzhou Antiwear Valves Co.,Ltd.</div>
+        <div class="flex-item"style="font-size: 20px">电 话：0512-82880588 &emsp;传 真：0512-82079059</div>
+        <div class="flex-item"style="font-size: 20px">地 址：苏州吴江汾湖开发区越秀路988号</div>
+        <div class="flex-item"style="font-size: 14px">Add: 988 Yuexiu Road, Fenho Zone, Wujiang District, Suzhou City, Jiangsu Province, China</div>
+    </div>
+    <div id="contral">
+        <div class="flex-item"style="font-size: 40px">送 货 单</div>
+        <div style="width: 400px;height: 150px;background-color: black;margin: 15px auto"><img src=""></div>
+        <div class="flex-item"style="font-size: 24px">D020455555555</div>
+        <div style="margin: 20px 0 "><span  class="text">厂商编码:</span>
+            <span  class="text">送货日期:<span class="date"></span></span>
+            <span  class="text">送货单号:</span>
+        </div>
+    </div>
+    <table id="datas" border="2"style="width: 99%;border-collapse: collapse">
+        <tr>
+            <th class="text-center">行号</th>
+            <th class="text-center">订单号</th>
+            <th class="text-center">料号</th>
+            <th class="text-center">物料名称</th>
+            <th class="text-center">单位</th>
+            <th class="text-center">数量</th>
+            <th class="text-center">炉/批号</th>
+            <th class="text-center">备注</th>
+        </tr>
+        <tr id="table" class="classtab">
+            <td class="prLn"></td>
+            <td class="poCode"></td>
+            <td class="itemCode"></td>
+            <td class="itemName"></td>
+            <td class="priceUom"></td>
+            <td class="rcvNum"></td>
+            <td class="heatCode"></td>
+            <td class="remark"></td>
+        </tr>
+    </table>
+
+</div>
+<button style="width: 120px;height: 30px; margin-top: 20px" onclick="print()" style="display: block" class="Noprint">确认打印
+</button>
+</body>
+<script>
+    var now=''
+    now = getEffectiveDate()
+    $(".date").html(now)
+    function getEffectiveDate(){
+        const dateTime = new Date()
+        const year = dateTime.getFullYear()
+        const month = dateTime.getMonth() + 1
+        const date = dateTime.getDate()
+        const hour = dateTime.getHours()
+        const minute = dateTime.getMinutes()
+        const second = dateTime.getSeconds()
+        return  `${year}-${this.addZero(month)}-${this.addZero(date)}`
+    }
+    function addZero (v) {
+        return v < 10 ? '0' + v : v
+    }
+</script>
+</html>

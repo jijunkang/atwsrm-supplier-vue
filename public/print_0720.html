@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&lrm;</title>
+  <style>
+    #header{
+      width         :100%;
+      height        :50px;
+      text-align    :center;
+      font-size     :45px;
+      margin-bottom :40px;
+    }
+
+    .orderNum{
+      position    :absolute;
+      font-size   :14px;
+      line-height :50px;
+      margin-left :60px;
+      padding-top :10px;
+    }
+
+    .trademark{
+      position    :absolute;
+      line-height :50px;
+      margin-left :-260px;
+    }
+
+    #rule1{
+      width       :100%;
+      padding-top :10px;
+    }
+
+    dt, dd{
+      padding-bottom :10px;
+    }
+
+    td, th{
+      padding :4px 0;
+    }
+
+    purchaseOrder1{
+      width  :100%;
+      height :100%;
+    }
+
+    #purchaseOrder2{
+      position   :relative;
+      z-index    :99999;
+      margin-top :-200px;
+      width      :100%;
+      height     :205px;
+    }
+
+    #purchaseOrder2 ul{
+      list-style   :none;
+      padding-left :0px;
+      display      :inline-block;
+      width        :50%;
+    }
+
+    #purchaseOrder2 ul:nth-child(2){
+      float :right;
+      /*margin-right: 100px;*/
+    }
+
+    #purchaseOrder2 ul li{
+      padding-bottom :5px;
+      width          :100%;
+    }
+
+    #top{
+      width :100%;
+    }
+
+    #top table{
+      width :100%;
+    }
+
+    .materialtable td{
+      text-align :center;
+    }
+
+    #table .itemCode{
+      text-align :left
+    }
+
+    .positionr{
+      text-align :right !important;
+    }
+
+    #top tr > td:nth-child(odd){
+      width :100px;
+    }
+
+    /*#top tr > td:nth-child(even) {*/
+    /*  padding-right: 30px;*/
+    /*}*/
+  </style>
+  <style media=print>
+    .Noprint{
+      display :none;
+    }
+  </style>
+</head>
+<body>
+<div id="contract">
+  <div id="purchaseOrder1">
+    <div id='header'>
+      <sapn class="trademark"><img src="../img/atw.png"
+                                   style="width: 162px;height: 40px;line-height: 50px"></sapn>
+      <span>采购订单</span>
+      <span class="orderNum">订单编号：<span id="orderCode"></span></span></div>
+    <div id="top">
+      <table>
+        <tr>
+          <td>买  方：</td>
+          <td>苏州安特威工业智能科技股份有限公司</td>
+          <td>卖  方：</td>
+          <td class="seller"></td>
+        </tr>
+        <tr>
+          <td>地  址：</td>
+          <td>苏州吴江汾湖开发区越秀路988号</td>
+          <td>地  址：</td>
+          <td id="address"></td>
+        </tr>
+        <tr>
+          <td>电  话：</td>
+          <td>0512-82880588转8050</td>
+          <td>电  话：</td>
+          <td id="tel"></td>
+        </tr>
+        <tr>
+          <td>传  真：</td>
+          <td>0512-82079059</td>
+          <td>传  真：</td>
+          <td id="fax"></td>
+        </tr>
+        <tr>
+          <td>开户银行：</td>
+          <td>中国农业银行吴江汾湖支行</td>
+          <td>开户银行：</td>
+          <td id="bank"></td>
+        </tr>
+        <tr>
+          <td>账  号：</td>
+          <td>10543701040015106</td>
+          <td>账  号：</td>
+          <td id="accountNum"></td>
+        </tr>
+        <tr>
+          <td>税  号：</td>
+          <td>913205096829757874</td>
+          <td>税  号：</td>
+          <td id="dutyParag"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="rule1" style="clear: both">
+      <dl>
+        <dt>本订单由买卖双方订立，根据订单规定条款，双方同意按下述条款和条件签署订单：</dt>
+        <dt>1. 订单文件：本订单所附下列文件是构成合同不可分割的部分。</dt>
+        <dt>2. 订单明细（以下价格已经包含<span class="taxRate"></span>增值税、运输费用及其他所有税费）：</dt>
+        <dt>
+          <table border="2" class="materialtable" style="width: 99%;border-collapse: collapse" id="datas">
+            <thead>
+            <tr class="orderdetailtab">
+              <th class="text-center" style="width:5%">行号</th>
+              <th class="text-center">料号</th>
+              <th class="text-center">物料名称</th>
+              <!--              <th class="text-center" style="width:60px">项目</th>-->
+              <th class="text-center" style="width:16%">交期</th>
+              <th class="text-center" style="width:10%">数量</th>
+              <th class="text-center" style="width:8%">单位</th>
+              <th class="text-center" style="width:10%">单价</th>
+              <th class="text-center" style="width:10%">金额</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="table" class="classtab">
+              <td class="ln"></td>
+              <td class="itemCode"></td>
+              <td class="itemName"></td>
+              <!--              <td class="project"></td>-->
+              <td class="trcdate"></td>
+              <td class="Num"></td>
+              <td class="unit"></td>
+              <td class="unitprice positionr"></td>
+              <td class="price positionr"></td>
+            </tr>
+            <tr class="classtaball">
+              <td colspan="2">合计</td>
+              <td colspan="5">大写：<span class="addchinese"></span></td>
+              <td class="add positionr"></td>
+            </tr>
+            </tbody>
+          </table>
+        </dt>
+        <dt id="addClause"></dt>
+        <dt>3. 付款条件：<span id="payWay"></span></dt>
+        <dt>4. 卖方产品质量保证：</dt>
+        <dd>a. 卖方需提供产品合格证书，产品质量符合我厂要求，质保期从使用之日起一年，或发货之日起18个月，如在质保期内发生质量问题，卖方接受无条件退货，并承担相应损失；</dd>
+        <dd>b. 按买方图纸要求和采购规范生产、检验，材料采购规范明细：</dd>
+        <dt>
+          <table border="2" class="materialtable" style="width: 99%;border-collapse: collapse">
+            <thead>
+            <tr class="materialtab">
+              <th class="text-center">材料类型</th>
+              <th class="text-center">采购规范编号</th>
+              <th class="text-center">材料类型</th>
+              <th class="text-center">采购规范编号</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>铸件</td>
+              <td>《ATW-TS-01》</td>
+              <td>紧固件</td>
+              <td>《ATW-TS-07》</td>
+            </tr>
+            <tr>
+              <td>碟簧</td>
+              <td>《ATW-TS-04》</td>
+              <td>焊材</td>
+              <td>《ATW-TS-08》</td>
+            </tr>
+            <tr>
+              <td>锻件</td>
+              <td>《ATW-TS-05》</td>
+              <td>密封件</td>
+              <td>《ATW-TS-09》</td>
+            </tr>
+            <tr>
+              <td>型材</td>
+              <td>《ATW-TS-06》</td>
+              <td>非金属材料</td>
+              <td>《ATW-TS-10》</td>
+            </tr>
+            <tr>
+              <td>外购零件、外发机加工</td>
+              <td>《ATW-TS-11》</td>
+              <td></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </dt>
+        <dt>5. 产品的交货单位、交货方法、运输方式、到达地点（包括专用线、码头）</dt>
+        <dd> a. 产品的收货单位：苏州安特威工业智能科技股份有限公司；</dd>
+        <dd> b. 包装、交货方法：卖方承担货物最终运达到买方到货地点之间的所有运费，并提供坚固、适合长途运输的包装；卖方提供ATW标准送货单，材质证明报告，检验报告</dd>
+        <dd> c. 运输方式：专车运输、物流运输、快递等，送货上门；</dd>
+        <dd> d. 到货地点和接货单位（或接货人）：苏州吴江市汾湖开发区越秀路988号，</dd>
+        <dd> e. 收货员 15962590769</dd>
+        <dt>6. 订单生效：本订单应在双方授权代表签字盖章后立即生效。</dt>
+        <dt>7. 此订单其他未尽条款按照买卖双方签订的"供应商合作条款”执行。</dt>
+        <dt><h3>供应商合作条款</h3></dt>
+        <dt><h4>1、技术规格</h4></dt>
+        <dd>1.1 交付货物应与合同要求和技术文件、技术附件中规定的要求相一致。</dd>
+        <dd>1.2 除技术规格另有规定外，计量单位应该使用公制。</dd>
+        <dt><h4>2、保密及专利权</h4></dt>
+        <dd>2.1 卖方必须保证不得将买方提供的图纸及加工细节、配方等所有技术信息、商业信息等泄漏或遗失，否则，卖方需向买方承担所有由此导致的直接和间接损失。</dd>
+        <dd>2.2
+          卖方应保证买方在使用该货物或其任何一部分时免受第三方提出侵犯其知识产权的诉求。如出现，卖方负责解决相关争议，并且承担买方因此而遭受的所有直接或间接损失，包括但不限于应诉的费用、生产延误的损失等。
+        </dd>
+        <dt><h4>3、设计及变更</h4></dt>
+        <dd>3.1 卖方提供的产品必须符合事前已提供的技术参数或选型手册。卖方技术参数或选型手册发生变更应及时通知买方，因不符合或未及时更新技术参数和选型手册产生的直接和间接损失由卖方承担。</dd>
+        <dt><h4>4、包装、运输要求</h4></dt>
+        <dd>4.1 除合同另有规定外，卖方提供的全部货物均应按照标准保护措施进行包装，这类包装应适应于远距离运输、防潮、防震、防锈和防野蛮包装，以确保货物安全无损地运抵指定现场。</dd>
+        <dd>4.2 卖方应负责货物运输到交货地所需负担的全部费用，包括但不限于运费、人员费、高速公路费（如有）、杂费、罚款等费用。</dd>
+        <dd>4.3 卖方应对因包装、运输等环节出现的问题负责，货物在完好到达交货地点前所发生的一切风险、损失均由卖方承担。</dd>
+        <dt><h4>5、卖方履约义务及违约责任</h4></dt>
+        <dd>5.1
+          卖方交付的货物质量不符合合同和买方技术文件规定的，须在合同规定或者买方指定的交货时间内更换合格的货物给买方，否则，卖方将因不能交付货物而构成违约，按本条本款下述第“（5.2）”项规定由卖方偿付违约赔偿金给买方。
+        </dd>
+        <dd> 5.2
+          卖方不能交付货物或逾期交付货物而违约的，除应及时交足货物外，每逾期1天应向买方偿付逾期交货部分货款总额的千分之五/天的违约金，总的逾期违约金不超过合同总额的20％；逾期交货超过三十天，买方有权终止合同，卖方则应按合同总价的百分之五十的款额向买方偿付赔偿金，并须全额退还买方已经付给卖方的货款及其利息。
+        </dd>
+        <dd> 5.3 卖方所交付的货物不存在任何权利瑕疵，未设定任何担保义务，其他任何第三方无权提出任何权利诉求，否则买方有权拒绝支付货款，而且卖方应向买方承担所有由此引发的损失。</dd>
+        <dt><h4>6、违约终止合同</h4></dt>
+        <dd> 6.1 在买方对因卖方违约而采取的任何补救措施无效的下述情况下，买方可向卖方发出书面通知书，提出终止部分或全部合同。</dd>
+        <dd> 6.1.1 如果卖方未能在合同规定的期限或买方同意延长的限期内提供部分或全部货物。</dd>
+        <dd> 6.1.2 如果卖方未能履行合同规定的其它义务。</dd>
+        <dd>6.2
+          如果买方根据上述第6.1条的规定，终止了全部或部分合同，买方可以依其认为适当的条件和方法购买与未交货物类似的货物，卖方除向买方承担相应违约责任以外，还应对购买类似货物所超出的该部分费用负责。但是，卖方应继续执行合同中未终止的部分。
+        </dd>
+        <dt><h4>7、转让和承包</h4></dt>
+        <dd>7.1 除买方事先书面同意外，卖方不得部分转让或全部转让其应履行的合同义务。否则买方有权终止合同，且卖方承担由此给买方造成的所有直接和间接损失，及相当于合同总金额20%的违约金作为赔偿。</dd>
+        <dt><h4>8、质量保证</h4></dt>
+        <dd>8.1
+          卖方保证其产品质量合格、运作正常，符合买方的需要和技术文件要求。如卖方产品在买方或者经买方转销的其他实体使用过程中出现质量问题，造成经济损失的，卖方须承担相应的直接和间接损失；同时，卖方须承担买方为处理该等问题而负担的合理支出。
+        </dd>
+        <dt><h4>9、质量问题</h4></dt>
+        <dd> 9.1
+          买方在收到货物后发现质量问题，应在24小时内通知卖方，由卖方在获得买方通知后24小时内派人到达现场解决问题；如卖方在收到买方质量问题通知后24小时内未派人到达现场，视为卖方认可产品质量问题，并愿意承担买方因此而发生的产品维修、替换、延误交货或延误生产等损失；如买方情况紧急，须尽快开展交货或生产等事宜，可在通知卖方相关情况后，自行安排人员进行产品的维修、替换等补救措施，卖方须承担买方在其间所发生的所有相关费用。
+        </dd>
+        <dt><h4>10、争议的解决</h4></dt>
+        <dd> 10.1
+          买卖双方应通过友好协商，解决在执行本合同中所发生的或与本合同有关的一切争端。如从协商开始15天内仍不能解决，双方应将争端提交江苏吴江仲裁委员会仲裁，适用该仲裁机构的仲裁规则。仲裁裁决是终局的，对甲乙双方均有约束力。
+        </dd>
+        <dd>10.2 在仲裁期间，除正在进行仲裁的部分外，本合同的其他部分应继续进行。</dd>
+        <dt><h4>11、合同修改</h4></dt>
+        <dd>11.1 除非双方签署书面修改协议，并成为本合同不可分割的一部分的情况外，本合同的条件不得有任何变化或修改。</dd>
+        <dt><h4>12、反商业贿赂</h4></dt>
+        <dd>
+          12.1卖方不得以任何形式拉拢、收买买方工作人员；买方工作人员也不得索取、接受卖方任何形式的商业贿赂。卖方违反本条约即视为违约，买方有权终止合同和合作关系，卖方必须赔偿因此带给买方的直接和间接经济损失，买方有权直接从应付账款中扣除损失和罚金，并保留向行贿和受贿方追究法律责任的权利。
+        </dd>
+        <dt><h4>13、品质、价格保证</h4></dt>
+        <dd>13.1 卖方必须提供买方优质合格的产品。如果发生卖方向买方提供以次充好、假冒伪劣产品情况，买方有权扣押卖方相应货款并要求卖方赔偿此行为带给买方的损失。如果情节恶劣或损失巨大，买方有权追究卖方法律责任。</dd>
+        <dd>13.2 卖方保证提供买方的价格是在优质或原装正品情况下的市场低价，如果卖方价格普遍高于市场平均价15~20%
+          ，（市场平均价定义：以同类型、同规格牌号或同品牌产品，两家及以上其他卖家报价；或者具有行业公信网站公布行情数据），视同卖方违约，买方有权扣除高于市场价格部分货款；如果卖方价格普遍高于市场平均价20%以上情况，卖方双倍赔偿买方高出市场价部分损失。
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div id="pic"><img src="../img/Specialseal.jpg" style="width: 200px;height: 200px;"></div>
+  <div id="purchaseOrder2">
+    <ul>
+      <li>买 方：苏州安特威工业智能科技股份有限公司</li>
+      <li>法定代表人或负责人：</li>
+      <li>日期：<span class="date"></span></li>
+    </ul>
+
+    <ul>
+      <li>卖 方：<span class="seller"></span></li>
+      <li>法定代表人或负责人：</li>
+      <li>日期：<span class="date"></span></li>
+    </ul>
+  </div>
+</div>
+<button style="width: 120px;height: 30px;" onclick="print()" id="printCon" style="display: block" class="Noprint">确认打印
+</button>
+</body>
+<script src="./jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="./util/func.js"></script>
+<script>
+
+    $(() => {
+        let id = getUrlParam('id');
+        $.ajax({
+            type    :'GET',
+            url     :'/api/blade-po/po/detailwithpi?id=' + id,
+            // data    :{id:id},
+            dataType:'json',
+            success :function(result){
+                console.log(result)
+                $("#orderCode").html(result.data.orderCode)
+                $(".seller").html(result.data.supName)
+                $("#address").html(result.data.address)
+                $("#tel").html(result.data.phone)
+                $("#fax").html(result.data.fax)
+                $("#bank").html(result.data.bankName)
+                $("#accountNum").html(result.data.bankAccountCode)
+                $("#dutyParag").html(result.data.stateTaxCode)
+                $("#addClause").html('附加条款：' + result.data.addClause)//附加条件
+                if(!result.data.addClause){
+                    $(function(){$("#addClause").hide();})
+                }else{
+                    $(function(){$("#addClause").show();})
+                }
+                $("#payWay").html(result.data.payWay)
+                // $("#receiverPhone").html(result.data.orderCode)
+                $(".date").html(result.data.createTime.substr(0, 10))
+                $(".taxRate").html(((Math.round(result.data.taxRate * 10000)) / 100.00).toFixed(0) + '%');
+                var data      = result.data.poItemList
+                var acountAll = 0
+                for(var i = 0; i < data.length; i++){
+                    var row = $("#table").clone();
+                    row.find(".ln").text(data[i].poLn);
+                    row.find(".itemCode").text(data[i].itemCode);
+                    row.find(".itemName").text(data[i].itemName);
+                    // row.find(".project").text(data[i].proNo);//项目
+                  if(data[i].filterListStatus == 1){
+                    /*if(data[i].supUpdateDate && data[i].supUpdateDate != -1 && data[i].supUpdateDate != ''){
+                      var time = data[i].supUpdateDate   //优先取修改交期  为空时取承诺交期，再为空时取要求交期
+                    }else if(data[i].supConfirmDate && data[i].supConfirmDate != -1 && data[i].supConfirmDate != ''){
+                      var time = data[i].supConfirmDate
+                    }else if(data[i].reqDate && data[i].reqDate != -1 && data[i].reqDate != ''){
+                      var time = data[i].reqDate
+                    }*/
+
+
+                    if(data[i].supConfirmDate && data[i].supConfirmDate != -1 && data[i].supConfirmDate != ''){ //直接取承诺交期
+                      var time = data[i].supConfirmDate
+                    }
+                    var times = Time(time)
+                    row.find(".trcdate").text(times);
+                  }else{
+                    //  atw_u9_pr 里面的 supConfirmDate 来作为 交期
+                    var time = data[i].supConfirmDate;
+                    var times = Time(time)
+                    row.find(".trcdate").text(times);
+                  }
+
+
+                    row.find(".Num").text(data[i].tcNum);
+                    row.find(".unit").text(data[i].tcUom);
+                    row.find(".unitprice").text(formatMoney(data[i].price));
+                    row.find(".price").text(formatMoney(data[i].amount));
+                    row.appendTo("#datas");//添加到模板的容器中
+                }
+                acountAll     = formatMoney(result.data.docAmount)
+                var acountrow = $(".classtaball").clone();
+                $(".classtaball:eq(0)").hide()
+                var chinese = number_chinese(result.data.docAmount)
+                acountrow.find(".addchinese").text(chinese)
+                acountrow.find(".add").text(acountAll)
+                acountrow.appendTo("#datas");
+                console.log("555", acountAll)
+                $(".classtab:eq(0)").hide()
+
+            },
+        });
+    })
+
+
+</script>
+</html>

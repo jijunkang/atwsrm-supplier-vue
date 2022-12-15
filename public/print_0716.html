@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&lrm;</title>
+  <style>
+    #header{
+      width         :100%;
+      height        :50px;
+      text-align    :center;
+      font-size     :45px;
+      margin-bottom :40px;
+    }
+
+    .orderNum{
+      position    :absolute;
+      font-size   :14px;
+      line-height :50px;
+      margin-left :60px;
+      padding-top :10px;
+    }
+
+    .trademark{
+      position    :absolute;
+      line-height :50px;
+      margin-left :-260px;
+    }
+
+    #rule1{
+      width       :100%;
+      padding-top :10px;
+    }
+
+    dt, dd{
+      padding-bottom :10px;
+    }
+
+    td, th{
+      padding :4px 0;
+    }
+
+    purchaseOrder1{
+      width  :100%;
+      height :100%;
+    }
+
+    #purchaseOrder2{
+      position   :relative;
+      z-index    :99999;
+      margin-top :-200px;
+      width      :100%;
+      height     :205px;
+    }
+
+    #purchaseOrder2 ul{
+      list-style   :none;
+      padding-left :0px;
+      display      :inline-block;
+      width        :50%;
+    }
+
+    #purchaseOrder2 ul:nth-child(2){
+      float :right;
+    }
+
+    #purchaseOrder2 ul li{
+      padding-bottom :5px;
+      width          :100%;
+    }
+
+    #top{
+      width :100%;
+    }
+
+    #top table{
+      width :100%;
+    }
+
+    .materialtable td{
+      text-align :center;
+    }
+
+    #table .itemCode{
+      text-align :left
+    }
+
+    .positionr{
+      text-align :right !important;
+    }
+
+    #top tr > td:nth-child(odd){
+      width :100px;
+    }
+
+    /*#top tr > td:nth-child(even) {*/
+    /*  padding-right: 30px;*/
+    /*}*/
+  </style>
+  <style media=print>
+    .Noprint{
+      display :none;
+    }
+  </style>
+</head>
+<body>
+<div id="contract">
+  <div id="purchaseOrder1">
+    <div id='header'>
+      <sapn class="trademark"><img src="../img/atw.png"
+                                   style="width: 162px;height: 40px;line-height: 50px"></sapn>
+      <span>采购订单</span>
+      <span class="orderNum">订单编号：<span id="orderCode"></span></span></div>
+
+    <div id="top">
+      <table>
+        <tr>
+          <td>买  方：</td>
+          <td>苏州安特威工业智能科技股份有限公司</td>
+          <td>卖  方：</td>
+          <td class="seller"></td>
+        </tr>
+        <tr>
+          <td>地  址：</td>
+          <td>苏州吴江汾湖开发区越秀路988号</td>
+          <td>地  址：</td>
+          <td id="address"></td>
+        </tr>
+        <tr>
+          <td>电  话：</td>
+          <td>0512-82880588转8050</td>
+          <td>电  话：</td>
+          <td id="tel"></td>
+        </tr>
+        <tr>
+          <td>传  真：</td>
+          <td>0512-82079059</td>
+          <td>传  真：</td>
+          <td id="fax"></td>
+        </tr>
+        <tr>
+          <td>开户银行：</td>
+          <td>中国农业银行吴江汾湖支行</td>
+          <td>开户银行：</td>
+          <td id="bank"></td>
+        </tr>
+        <tr>
+          <td>账  号：</td>
+          <td>10543701040015106</td>
+          <td>账  号：</td>
+          <td id="accountNum"></td>
+        </tr>
+        <tr>
+          <td>税  号：</td>
+          <td>913205096829757874</td>
+          <td>税  号：</td>
+          <td id="dutyParag"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="rule1" style="clear: both">
+      <dl>
+        <dt>本订单由买卖双方订立，根据订单规定条款，双方同意按下述条款和条件签署订单：</dt>
+        <dt>1. 订单文件：本订单所附下列文件是构成合同不可分割的部分。</dt>
+        <dt>2. 订单明细（以下价格已经包含<span class="taxRate"></span>增值税、运输费用及其他所有税费）：</dt>
+        <dt>
+          <table border="2" class="materialtable" style="width: 99%;border-collapse: collapse" id="datas">
+            　
+            <thead>
+            <tr class="orderdetailtab">
+              <th class="text-center" style="width:5%">行号</th>
+              <th class="text-center">料号</th>
+              <th class="text-center">物料名称</th>
+              <!--              <th class="text-center" style="width:60px">项目</th>-->
+              <th class="text-center" style="width:16%">交期</th>
+              <th class="text-center" style="width:10%">数量</th>
+              <th class="text-center" style="width:8%">单位</th>
+              <th class="text-center" style="width:10%">单价</th>
+              <th class="text-center" style="width:10%">金额</th>
+            </tr>
+            　
+            </thead>
+            <tbody>
+            <tr id="table" class="classtab">
+              <td class="ln"></td>
+              <td class="itemCode"></td>
+              <td class="itemName"></td>
+              <!--                <td class="project"></td>-->
+              <td class="trcdate"></td>
+              <td class="Num"></td>
+              <td class="unit"></td>
+              <td class="unitprice positionr"></td>
+              <td class="price positionr"></td>
+            </tr>
+            <tr class="classtaball">
+              <td colspan="2">合计</td>
+              <td colspan="5">大写：<span class="addchinese"></span></td>
+              <td class="add positionr"></td>
+            </tr>
+            </tbody>
+          </table>
+        </dt>
+        <dt id="addClause"></dt>
+        <dt>3. 付款条件：<span id="payWay"></span></dt>
+        <dd>a. 货到验收合格,并线上提供《质量保证书》相关资料齐全后方可对账,相关资料详见下记采购规范;</dd>
+        <dd>b. 每月20日前对帐,对账无误后开票,当月25日前到票,次月1日开始计算;当月25日及以后到票,次次月1日开始计算</dd>
+        <dt>4. 卖方产品质量保证：</dt>
+        <dd>a. 卖方需要提供产品合格证书，产品质量符合我厂要求，质保期从使用之日起一年，或发货之日起18个月，如在质保期内发生质量问题，卖方接受无条件退货，并承担相应损失；</dd>
+        <dd>b. 按买方图纸要求和材料采购规范生产、检验，材料采购规范明细:</dd>
+        <dt>
+          <table border="2" class="materialtable" style="width: 99%;border-collapse: collapse">
+            <thead>
+            <tr class="materialtab">
+              <th class="text-center">材料类型</th>
+              <th class="text-center">采购规范编号</th>
+              <th class="text-center">材料类型</th>
+              <th class="text-center">采购规范编号</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>铸件</td>
+              <td>《ATW-TS-01》</td>
+              <td>紧固件</td>
+              <td>《ATW-TS-07》</td>
+            </tr>
+            <tr>
+              <td>碟簧</td>
+              <td>《ATW-TS-04》</td>
+              <td>焊材</td>
+              <td>《ATW-TS-08》</td>
+            </tr>
+            <tr>
+              <td>锻件</td>
+              <td>《ATW-TS-05》</td>
+              <td>密封件</td>
+              <td>《ATW-TS-09》</td>
+            </tr>
+            <tr>
+              <td>型材</td>
+              <td>《ATW-TS-06》</td>
+              <td>非金属材料</td>
+              <td>《ATW-TS-10》</td>
+            </tr>
+            <tr>
+              <td>外购零件、外发机加工</td>
+              <td>《ATW-TS-11》</td>
+              <td></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </dt>
+        <dd>c. 涉及铸造、锻造和热处理的原材料类产品出货需在材料和产品标注“炉号”、材质；</dd>
+        <dd>d. 卖方提供的产品必须符合事前已提供的技术参数或选型手册。卖方技术参数或选型手册发生变更应及时通知买方，因不符合或未及时更新技术参数和选型手册产生的直接和间接损失由卖方承担。</dd>
+        <dt>5. 产品的交货单位、交货方法、运输方式、到达地点（包括专用线、码头）</dt>
+        <dd> a. 产品的收货单位：苏州安特威工业智能科技股份有限公司；</dd>
+        <dd> b. 包装、交货方法：卖方承担货物最终运达到买方到货地点之间的所有运费，并提供坚固、适合长途运输的包装；卖方提供ATW标准送货单，材质证明报告，检验报告</dd>
+        <dd> c. 运输方式：专车运输、物流运输、快递等，送货上门；</dd>
+        <dd> d. 到货地点和接货单位（或接货人）：苏州吴江市汾湖开发区越秀路988号，</dd>
+        <dd> e. 收货员 15962590769</dd>
+        <dt>6. 订单生效：本订单应在双方授权代表签字盖章后立即生效。</dt>
+        <dt>7. 此订单其他未尽条款按照买卖双方签订的"供应商合作条款”执行。</dt>
+      </dl>
+    </div>
+  </div>
+  <div id="pic"><img src="../img/Specialseal.jpg" style="width: 200px;height: 200px;"></div>
+  <div id="purchaseOrder2">
+    <ul>
+      <li>买 方：苏州安特威工业智能科技股份有限公司</li>
+      <li>法定代表人或负责人：</li>
+      <li>日期：<span class="date"></span></li>
+    </ul>
+
+    <ul>
+      <li>卖 方：<span class="seller"></span></li>
+      <li>法定代表人或负责人：</li>
+      <li>日期：<span class="date"></span></li>
+    </ul>
+  </div>
+</div>
+<button style="width: 120px;height: 30px;" onclick="print()" id="printCon" style="display: block" class="Noprint">确认打印
+</button>
+</body>
+<script src="./jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="./util/func.js"></script>
+<script>
+    $(() => {
+        let id = getUrlParam('id');
+        $.ajax({
+            type    :'GET',
+            url     :'/api/blade-po/po/detailwithpi?id=' + id,
+            // data    :{id:id},
+            dataType:'json',
+            success :function(result){
+                console.log(result)
+                $("#orderCode").html(result.data.orderCode)
+                $(".seller").html(result.data.supName)
+                $("#address").html(result.data.address)
+                $("#tel").html(result.data.phone)
+                $("#fax").html(result.data.fax)
+                $("#bank").html(result.data.bankName)
+                $("#accountNum").html(result.data.bankAccountCode)
+                $("#dutyParag").html(result.data.stateTaxCode)
+                $("#addClause").html('附加条款：' + result.data.addClause)//附加条件
+                if(!result.data.addClause){
+                    $(function(){$("#addClause").hide();})
+                }else{
+                    $(function(){$("#addClause").show();})
+                }
+                $("#payWay").html(result.data.payWay);
+                $(".date").html(result.data.createTime.substr(0, 10))
+                $(".taxRate").html(((Math.round(result.data.taxRate * 10000)) / 100.00).toFixed(0) + '%');
+                var data      = result.data.poItemList
+                var acountAll = 0
+                for(var i = 0; i < data.length; i++){
+                    var row = $("#table").clone();
+                    console.log(data[i]);
+                    row.find(".ln").text(data[i].poLn);
+                    row.find(".itemCode").text(data[i].itemCode);
+                    row.find(".itemName").text(data[i].itemName);
+
+
+                    // row.find(".project").text(data[i].proNo);//项目
+                    if(data[i].filterListStatus == 1){
+                      /*if(data[i].supUpdateDate && data[i].supUpdateDate != -1 && data[i].supUpdateDate != ''){
+                        var time = data[i].supUpdateDate
+                      }else if(data[i].supConfirmDate && data[i].supConfirmDate != -1 && data[i].supConfirmDate != ''){
+                        var time = data[i].supConfirmDate
+                      }else if(data[i].reqDate && data[i].reqDate != -1 && data[i].reqDate != ''){
+                        var time = data[i].reqDate
+                      }*/
+
+                      if(data[i].supConfirmDate && data[i].supConfirmDate != -1 && data[i].supConfirmDate != ''){
+                        var time = data[i].supConfirmDate
+                      }
+                      var times = Time(time)
+                      row.find(".trcdate").text(times);
+                    }else{
+                      //  atw_u9_pr 里面的 supConfirmDate 来作为 交期
+                      var time = data[i].supConfirmDate
+                      var times = Time(time)
+                      row.find(".trcdate").text(times);
+                    }
+                    row.find(".Num").text(data[i].tcNum);
+                    row.find(".unit").text(data[i].tcUom);
+                    row.find(".unitprice").text(formatMoney(data[i].price));
+                    row.find(".price").text(formatMoney(data[i].amount));
+                    row.appendTo("#datas");//添加到模板的容器中
+                }
+                acountAll     = formatMoney(result.data.docAmount)
+                var acountrow = $(".classtaball").clone();
+                $(".classtaball:eq(0)").hide()
+                var chinese = number_chinese(result.data.docAmount)
+                acountrow.find(".addchinese").text(chinese)
+                acountrow.find(".add").text(acountAll)
+                acountrow.appendTo("#datas");
+                // console.log("555",acountAll)
+                $(".classtab:eq(0)").hide()
+
+            },
+        });
+    })
+
+
+</script>
+</html>

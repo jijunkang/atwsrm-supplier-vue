@@ -182,6 +182,23 @@
                     searchMenuSpan:6,
                     column        :[
                         {
+                          label: "组织代码",
+                          width: 100,
+                          prop: "orgCode",
+                          align: 'center',
+                          overHidden: true,
+                          search: true,
+                          hidden: true,
+                          searchLabelWidth: 90,
+                          searchSpan: 6,
+                          type: "select",
+                          dicUrl: '/api/blade-system/dict-biz/dictionary?code=org_code',
+                          props: {
+                            label: "dictValue",
+                            value: "dictKey"
+                          },
+                        },
+                        {
                             label     :"订单编号",
                             width     :150,
                             prop      :"poCode",
@@ -531,7 +548,15 @@
                 let taxSubTotal = 0
                 let VMITypeCount    = 0;
                 let othersTypeCount = 0;
+
+                let firstorgCode=this.selectionList[0].orgCode;
+
                 for(var i = 0; i < this.selectionList.length; i++){
+
+                    if(firstorgCode != this.selectionList[i].orgCode){
+                      return this.$message.warning("请选择相同组织代码");
+                    }
+
                     if(this.selectionList[i].poCode.indexOf("VMI") > -1) {
                       VMITypeCount++;
                     } else {

@@ -169,6 +169,7 @@
               <th class="text-center" style="width:5%">行号</th>
               <th class="text-center">料号</th>
               <th class="text-center">物料名称</th>
+                <th class="text-center" style="width:10%">ABC分类</th>
               <th class="text-center" style="width:16%">交期</th>
               <th class="text-center" style="width:10%">数量</th>
               <th class="text-center" style="width:8%">单位</th>
@@ -181,6 +182,7 @@
               <td class="ln"></td>
               <td class="itemCode"></td>
               <td class="itemName"></td>
+                <td class="abcType"></td>
               <td class="trcdate"></td>
               <td class="Num"></td>
               <td class="unit"></td>
@@ -189,7 +191,7 @@
             </tr>
             <tr class="classtaball">
               <td colspan="2">合计</td>
-              <td colspan="5">大写：<span class="addchinese"></span></td>
+              <td colspan="6">大写：<span class="addchinese"></span></td>
               <td class="add positionr"></td>
             </tr>
             </tbody>
@@ -247,10 +249,10 @@
         <dd>c. 涉及铸造、锻造和热处理的原材料类产品出货需在材料和产品上标注“炉号”、材质；</dd>
         <dd>d. 涉及卖方标准产品，卖方提供的产品必须符合卖方事前提供买方的技术参数或选型手册。卖方技术参数或选型手册发生变更应及时通知买方，产生的损失由卖方承担。</dd>
         <dt>5. 产品的交货单位、交货方法、运输方式、到货地点（包括专用线、码头）</dt>
-        <dd> a. 产品的收货单位：苏州安特威工业智能科技股份有限公司；</dd>
+        <dd> a. 产品的收货单位：<span class="orgname"></span>；</dd>
         <dd> b. 包装、交货方法：卖方承担货物最终运达买方到货地点之间的所有运费，并提供坚固、适合长途运输的包装；卖方提供ATW标准送货单，材质证明报告，检验报告</dd>
         <dd> c. 运输方式：专车运输、物流运输、快递等，送货上门；</dd>
-        <dd> d. 到货地点和接货单位（或接货人）：苏州吴江市汾湖开发区越秀路988号，</dd>
+        <dd> d. 到货地点和接货单位（或接货人）：<span class="adress"></span>，</dd>
         <dd> e.
           卖方不能交付货物或逾期交付货物而违约的，除应及时交足货物外，每逾期1天应向买方偿付逾期交货部分货款总额的千分之五/天的违约金，总的逾期违约金不超过合同总额的20％；逾期交货超过三十天，买方有权终止合同，卖方则应按合同总价的百分之五十的款额向买方偿付赔偿金，并须全额退还买方已经付给卖方的货款及其利息。
           <br>收货员 15962590769;
@@ -291,6 +293,19 @@
             success :function(result){
                 console.log(result)
                 $("#orderCode").html(result.data.orderCode)
+                if(result.data.orgCode==="002"){
+                    $(".orgname").html("安特威流体控制技术（常熟）有限公司")
+                    $(".adress").html("江苏省常熟市经济开发区电厂路11号")
+                    $(".khyh").html("中国建设银行常熟经济技术开发区支行")
+                    $(".zh").html("32250198614100000645")
+                    $(".sh").html("91320581MABWJARGXF")
+                }else {
+                    $(".orgname").html("苏州安特威工业智能科技股份有限公司")
+                    $(".adress").html("苏州吴江市汾湖开发区越秀路988号")
+                    $(".khyh").html("中国农业银行吴江汾湖支行")
+                    $(".zh").html("10543701040015106")
+                    $(".sh").html("913205096829757874")
+                }
                 $("#addClause").html('附加条款：' + result.data.addClause)//附加条件
                 if(!result.data.addClause){
                     $(function(){$("#addClause").hide();})
@@ -324,6 +339,7 @@
                     row.find(".unit").text(data[i].tcUom);
                     row.find(".unitprice").text(formatMoney(data[i].price));
                     row.find(".price").text(formatMoney(data[i].amount));
+                    row.find(".abcType").text(data[i].codeType);
                     row.appendTo("#datas");//添加到模板的容器中
                 }
                 acountAll     = formatMoney(result.data.docAmount)

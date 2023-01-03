@@ -458,7 +458,7 @@
                 return {
                   poCode:item.poCode,
                   poLn:item.poLn,
-                  orgCode:"001",
+                  orgCode:item.orgCode,
                   piId: item.id,
                   rcvNum: item.rcvNum,
                   heatCode: item.heatCode,

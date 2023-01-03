@@ -115,13 +115,13 @@
       <table>
         <tr>
           <td>买  方：</td>
-          <td>苏州安特威工业智能科技股份有限公司</td>
+          <td><span class="orgname"></span></td>
           <td>卖  方：</td>
           <td class="seller"></td>
         </tr>
         <tr>
           <td>地  址：</td>
-          <td>苏州吴江汾湖开发区越秀路988号</td>
+          <td><span class="adress"></span></td>
           <td>地  址：</td>
           <td id="address"></td>
         </tr>
@@ -139,19 +139,19 @@
         </tr>
         <tr>
           <td>开户银行：</td>
-          <td>中国农业银行吴江汾湖支行</td>
+          <td><span class="khyh"></span></td>
           <td>开户银行：</td>
           <td id="bank"></td>
         </tr>
         <tr>
           <td>账  号：</td>
-          <td>10543701040015106</td>
+          <td><span class="zh"></span></td>
           <td>账  号：</td>
           <td id="accountNum"></td>
         </tr>
         <tr>
           <td>税  号：</td>
-          <td>913205096829757874</td>
+          <td><span class="sh"></span></td>
           <td>税  号：</td>
           <td id="dutyParag"></td>
         </tr>
@@ -170,6 +170,7 @@
               <th class="text-center" style="width:5%">行号</th>
               <th class="text-center">料号</th>
               <th class="text-center">物料名称</th>
+                <th class="text-center" style="width:10%">ABC分类</th>
               <th class="text-center" style="width:16%">交期</th>
               <th class="text-center" style="width:10%">数量</th>
               <th class="text-center" style="width:8%">单位</th>
@@ -182,6 +183,7 @@
               <td class="ln"></td>
               <td class="itemCode"></td>
               <td class="itemName"></td>
+                <td class="abcType"></td>
               <td class="trcdate"></td>
               <td class="Num"></td>
               <td class="unit"></td>
@@ -190,7 +192,7 @@
             </tr>
             <tr class="classtaball">
               <td colspan="2">合计</td>
-              <td colspan="5">大写：<span class="addchinese"></span></td>
+              <td colspan="6">大写：<span class="addchinese"></span></td>
               <td class="add positionr"></td>
             </tr>
             </tbody>
@@ -204,7 +206,7 @@
         <dd>c. 乙方必须保证所售产品为官方渠道原厂正品；如果卖方提供假冒伪劣产品给买方，按照该订单总额十倍进行处罚；</dd>
         <dd>d. 验收标准：按原厂选型样本规定的技术参数验收。</dd>
         <dt>5. 产品的交货单位、交货方法、运输方式、到货地点（包括专用线、码头）</dt>
-        <dd> a. 产品的收货单位：苏州安特威工业智能科技股份有限公司；</dd>
+        <dd> a. 产品的收货单位：<span class="orgname"></span>；</dd>
         <dd> b. 包装、交货方法：卖方承担货物最终运达买方到货地点之间的所有运费，并提供坚固、适合长途运输的包装；卖方提供ATW标准送货单，材质证明报告，检验报告</dd>
         <dd> c. 运输方式：专车运输、物流运输、快递等，送货上门；</dd>
         <dd> d. 到货地点和接货单位（或接货人）：吴江区汾湖国道路1788号（永鼎集团产业园一区3号楼），</dd>
@@ -217,7 +219,7 @@
   <div id="pic"><img src="../img/Specialseal.jpg" style="width: 200px;height: 200px;"></div>
   <div id="purchaseOrder2">
     <ul>
-      <li>买 方：苏州安特威工业智能科技股份有限公司</li>
+      <li>买 方：<span class="orgname"></span></li>
       <li>法定代表人或负责人：</li>
       <li>日期：<span class="date"></span></li>
     </ul>
@@ -247,6 +249,19 @@
             success :function(result){
                 console.log(result)
                 $("#orderCode").html(result.data.orderCode)
+                if(result.data.orgCode==="002"){
+                    $(".orgname").html("安特威流体控制技术（常熟）有限公司")
+                    $(".adress").html("江苏省常熟市经济开发区电厂路11号")
+                    $(".khyh").html("中国建设银行常熟经济技术开发区支行")
+                    $(".zh").html("32250198614100000645")
+                    $(".sh").html("91320581MABWJARGXF")
+                }else {
+                    $(".orgname").html("苏州安特威工业智能科技股份有限公司")
+                    $(".adress").html("苏州吴江市汾湖开发区越秀路988号")
+                    $(".khyh").html("中国农业银行吴江汾湖支行")
+                    $(".zh").html("10543701040015106")
+                    $(".sh").html("913205096829757874")
+                }
                 $(".seller").html(result.data.supName)
                 $("#address").html(result.data.address)
                 $("#tel").html(result.data.phone)
@@ -288,6 +303,7 @@
                     row.find(".unit").text(data[i].tcUom);
                     row.find(".unitprice").text(formatMoney(data[i].price));
                     row.find(".price").text(formatMoney(data[i].amount));
+                    row.find(".abcType").text(data[i].codeType);
                     row.appendTo("#datas");//添加到模板的容器中
                 }
                 acountAll     = formatMoney(result.data.docAmount)

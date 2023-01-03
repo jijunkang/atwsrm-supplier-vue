@@ -498,6 +498,9 @@
         }
         var req = printData.map(item => {
           return {
+            poCode:item.poCode,
+            poLn:item.poLn,
+            orgCode:item.orgCode,
             rcvCode: this.rcvCodeOfUpdate,
             isOutCheck: this.isOutCheck,
             piId: item.id,

@@ -109,7 +109,7 @@
 
     <div id="rule1" style="clear: both">
       <dl>
-        <dt>甲方（需方）：苏州安特威工业智能科技股份有限公司（以下简称甲方）</dt>
+        <dt>甲方（需方）：<span class="orgname"></span>（以下简称甲方）</dt>
         <dt>乙方（供方）：<span class="supName"></span>（以下简称乙方）</dt>
         <dt>  甲乙双方依照《中华人民共和国合同法》及其他有关法律、行政法规、遵循平等、自愿、公平和诚实信用的原则就铸件采购事宜协商一致，订立本合同。</dt>
         <dt>一、 本合同适用于开模后铸件试样的购买。</dt>
@@ -121,6 +121,7 @@
             <tr class="orderdetailtab">
               <th class="text-center">料号</th>
               <th class="text-center">规格型号</th>
+                <th class="text-center" style="width:10%">ABC分类</th>
               <th class="text-center" style="width:10%">数量</th>
               <th class="text-center" style="width:8%">单位</th>
               <th class="text-center" style="width:10%">单价</th>
@@ -132,6 +133,7 @@
             <tr id="table" class="classtab">
               <td class="itemCode"></td>
               <td class="itemName"></td>
+                <td class="abcType"></td>
               <td class="tcNum"></td>
               <td class="tcUom"></td>
               <td class="price positionr"></td>
@@ -141,7 +143,7 @@
 <!--              <td colspan="2">合计</td>-->
 <!--              <td colspan="2">大写：<span class="addchinese"></span></td>-->
 <!--              <td colspan="2" class="add positionr"></td>-->
-              <td colspan="6">以上单价含税13%及含运费，金额按实际重量结算。</td>
+              <td colspan="7">以上单价含税13%及含运费，金额按实际重量结算。</td>
             </tr>
             </tbody>
           </table>
@@ -151,7 +153,7 @@
         <dd>3.1 此订单产品应符合甲方《ATW-TS-01 铸件采购规范》的要求；如果此订单产品为新开模后首次浇注，则需要按ASME B16.34要求对首件产品进行射线检测做工艺评定，不接受检测结果含有裂纹或五级缺陷的产品；</dd>
         <dd>3.2 此订单产品外观检验标准参照《MSS-SP-55》执行；</dd>
         <dt>四、 交货条件：</dt>
-        <dd>乙方应该在    年  月  日前送到甲方指定地点（苏州安特威工业智能科技股份有限公司，苏州市吴江汾湖开发区越秀路988号，收货员：15962590769）。</dd>
+        <dd>乙方应该在    年  月  日前送到甲方指定地点（<span class="orgname"></span>，<span class="adress"></span>，收货员：15962590769）。</dd>
         <dt>五、 产品验收：</dt>
         <dd>产品到达甲方仓库后，甲方按向乙方提供的技术图纸验收；实际使用过程中如果出现质量问题，按甲方的《供应商质量保证协议》执行。</dd>
         <dt>六、 结算方式：</dt>
@@ -170,7 +172,7 @@
   <div id="pic"><img src="img/Specialseal_old_20220630.jpg" style="width: 200px;height: 200px;"></div>
   <div id="purchaseOrder2">
     <ul>
-      <li>需 方：苏州安特威工业智能科技股份有限公司</li>
+      <li>需 方：<span class="orgname"></span></li>
       <li>法定代表人或负责人：</li>
       <li>日期：</li>
     </ul>
@@ -196,6 +198,19 @@
             success :function(result){
                 console.log(result)
                 $("#orderCode").html(result.data.orderCode)
+                if(result.data.orgCode==="002"){
+                    $(".orgname").html("安特威流体控制技术（常熟）有限公司")
+                    $(".adress").html("江苏省常熟市经济开发区电厂路11号")
+                    $(".khyh").html("中国建设银行常熟经济技术开发区支行")
+                    $(".zh").html("32250198614100000645")
+                    $(".sh").html("91320581MABWJARGXF")
+                }else {
+                    $(".orgname").html("苏州安特威工业智能科技股份有限公司")
+                    $(".adress").html("苏州吴江市汾湖开发区越秀路988号")
+                    $(".khyh").html("中国农业银行吴江汾湖支行")
+                    $(".zh").html("10543701040015106")
+                    $(".sh").html("913205096829757874")
+                }
                 $("#docDate").html(Time( result.data.docDate))
                 $(".supName").html(result.data.supName)
                 //$(".date").html(result.data.createTime.substr(0, 10))
@@ -211,6 +226,8 @@
                     row.find(".tcUom").text(data[i].tcUom);
                     row.find(".price").text(formatMoney(data[i].amount));
                     row.find(".updatePriceRemark").text(data[i].updatePriceRemark < 0 ? '' : data[i].updatePriceRemark);
+                    row.find(".abcType").text(data[i].codeType);
+
                     row.appendTo("#datas");//添加到模板的容器中
                 }
                 acountAll     = formatMoney(result.data.docAmount)

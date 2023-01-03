@@ -172,6 +172,22 @@
                     simplePage :1,
                     column     :[
                         {
+                          label: "组织代码",
+                          width: 100,
+                          prop: "orgCode",
+                          align: 'center',
+                          overHidden: true,
+                          hidden: true,
+                          searchLabelWidth: 90,
+                          searchSpan: 6,
+                          type: "select",
+                          dicUrl: '/api/blade-system/dict-biz/dictionary?code=org_code',
+                          props: {
+                            label: "dictValue",
+                            value: "dictKey"
+                          },
+                        },
+                        {
                             label     :"订单编号 行号",
                             width     :150,
                             prop      :"poItems",
@@ -621,10 +637,18 @@
             },
             //提交
             submit(){
+
+                let firstorgCode=this.selectedData[0].orgCode;
+
                 let add = 0
                 let VMITypeCount    = 0;
                 let othersTypeCount = 0;
                 for(var i = 0; i < this.selectedData.length; i++){
+
+                    if(firstorgCode != this.selectedData[i].orgCode){
+                      return this.$message.warning("请选择相同组织代码");
+                    }
+
                     if(this.selectionList[i].poCode.indexOf("VMI") > -1) {
                       VMITypeCount++;
                     } else {

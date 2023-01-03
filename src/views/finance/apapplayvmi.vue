@@ -216,6 +216,22 @@
                   menu       :false,
                     column        :[
                         {
+                          label: "组织代码",
+                          width: 100,
+                          prop: "orgCode",
+                          align: 'center',
+                          overHidden: true,
+                          hidden: true,
+                          searchLabelWidth: 90,
+                          searchSpan: 6,
+                          type: "select",
+                          dicUrl: '/api/blade-system/dict-biz/dictionary?code=org_code',
+                          props: {
+                            label: "dictValue",
+                            value: "dictKey"
+                          },
+                        },
+                        {
                             label     :"订单编号",
                             width     :150,
                             prop      :"poCode",
@@ -451,6 +467,7 @@
                     menu          :true,
                     searchMenuSpan:8,
                     column        :[
+
                         {
                             label           :"对账单编号",
                             prop            :"apCode",
@@ -713,6 +730,15 @@
                     this.$message.warning("请选择至少一条数据");
                     return;
                 }
+
+                let firstorgCode=this.selectionList[0].orgCode;
+                for(var i = 0; i < this.selectionList.length; i++){
+                  if(firstorgCode != this.selectionList[i].orgCode){
+                    return this.$message.warning("请选择相同组织代码");
+                  }
+
+                }
+
                 let add         = 0
                 let taxSubTotal = 0
                 let VMITypeCount    = 0;
@@ -808,6 +834,15 @@
                     this.$message.warning("请选择至少一条数据");
                     return;
                 }
+
+                for(var i = 0; i < this.selectionList.length; i++){
+
+                  if(this.selectionList[0].orgCode != this.selectionList[i].orgCode){
+                    this.$message.warning("请选择同一组织代码");
+                    return false;
+                  }
+                }
+
                 this.$confirm('是否确认生成应付单?', '提示', {
                     confirmButtonText:'确定',
                     cancelButtonText :'取消',

@@ -170,6 +170,7 @@
               <th class="text-center" style="width:5%">行号</th>
               <th class="text-center">料号</th>
               <th class="text-center">物料名称</th>
+                <th class="text-center" style="width:10%">ABC分类</th>
               <!--              <th class="text-center" style="width:60px">项目</th>-->
               <th class="text-center" style="width:16%">交期</th>
               <th class="text-center" style="width:10%">数量</th>
@@ -184,6 +185,7 @@
               <td class="ln"></td>
               <td class="itemCode"></td>
               <td class="itemName"></td>
+                <td class="abcType"></td>
               <!--                <td class="project"></td>-->
               <td class="trcdate"></td>
               <td class="Num"></td>
@@ -193,7 +195,7 @@
             </tr>
             <tr class="classtaball">
               <td colspan="2">合计</td>
-              <td colspan="5">大写：<span class="addchinese"></span></td>
+              <td colspan="6">大写：<span class="addchinese"></span></td>
               <td class="add positionr"></td>
             </tr>
             </tbody>
@@ -331,13 +333,14 @@
                     row.find(".unit").text(data[i].uom);
                     row.find(".unitprice").text(formatMoney(data[i].taxPrice));
                     row.find(".price").text(formatMoney(data[i].taxSubTotal));
+                    row.find(".abcType").text(data[i].codeType);
                     row.appendTo("#datas");//添加到模板的容器中
                     docAmount = docAmount + data[i].taxSubTotal;
                 }
                 acountAll  = formatMoney(docAmount)
                 var acountrow = $(".classtaball").clone();
                 $(".classtaball:eq(0)").hide()
-                var chinese = number_chinese(acountAll)
+                var chinese = number_chinese(docAmount)
                 acountrow.find(".addchinese").text(chinese)
                 acountrow.find(".add").text(acountAll)
                 acountrow.appendTo("#datas");
